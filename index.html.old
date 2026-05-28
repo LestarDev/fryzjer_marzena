@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Salon Fryzjerski | Tradycja od 1991 r.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #070705;   /* głęboka czerń/ciemne tło */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #f5f2e6;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* kontener główny */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* nagłówek ze sloganem */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #C79137;
+            padding-bottom: 1.8rem;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #F3C869 0%, #C79137 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+        }
+        .slogan {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #F3C869;
+            background: rgba(199, 145, 55, 0.1);
+            display: inline-block;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+        .hero p {
+            margin-top: 0.75rem;
+            color: #ddddcc;
+            font-size: 1rem;
+        }
+
+        /* karty (flexbox) */
+        .salons-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3.5rem;
+        }
+        .card {
+            flex: 1;
+            min-width: 280px;
+            background: #F3C869;      /* jasny, ciepły akcent */
+            border-radius: 2rem;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(199,145,55,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            color: #070705;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 40px -14px black;
+        }
+        .card h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+            border-left: 5px solid #070705;
+            padding-left: 1rem;
+            color: #070705;
+        }
+        .phone-group {
+            margin: 1.5rem 0 1rem;
+            background: rgba(7,7,5,0.08);
+            padding: 0.8rem;
+            border-radius: 1.5rem;
+        }
+        /* bardzo wyróżniające się numery telefonów */
+        .phone-number {
+            display: block;
+            font-size: 1.9rem;
+            font-weight: 800;
+            font-family: monospace;
+            letter-spacing: 2px;
+            background: #070705;
+            color: #F3C869;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            text-align: center;
+            margin: 0.6rem 0;
+            transition: all 0.2s;
+            text-decoration: none;
+            border: 1px solid #C79137;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .phone-number:hover {
+            background: #C79137;
+            color: #070705;
+            border-color: #F3C869;
+            transform: scale(1.02);
+        }
+        .phone-number small {
+            font-size: 0.85rem;
+            font-weight: normal;
+            letter-spacing: normal;
+            font-family: system-ui;
+        }
+        .address {
+            margin-top: 1.4rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #070705;
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(0,0,0,0.05);
+            border-radius: 1rem;
+            padding: 0.8rem;
+        }
+        .address p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+        .address-icon {
+            font-size: 1.2rem;
+        }
+
+        /* sekcja z prawdziwymi danymi firmy (historia, NIP) */
+        .company-info {
+            background: rgba(199, 145, 55, 0.15);
+            backdrop-filter: blur(3px);
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 3rem;
+            border-left: 6px solid #C79137;
+            font-size: 1.05rem;
+        }
+        .company-info p {
+            margin-bottom: 0.6rem;
+        }
+        .company-info strong {
+            color: #F3C869;
+        }
+        .nip {
+            font-family: monospace;
+            background: #070705;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #F3C869;
+        }
+
+        /* SEKCJA Z LOREM IPSUM - zdjęcia opływają tekst (float + clearfix) */
+        .text-with-images {
+            background: rgba(0,0,0,0.4);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #C79137;
+        }
+        .text-with-images h3 {
+            font-size: 1.9rem;
+            margin-bottom: 1.2rem;
+            color: #F3C869;
+            display: inline-block;
+            border-bottom: 3px solid #C79137;
+            padding-bottom: 0.2rem;
+        }
+        .image-float {
+            overflow: auto;   /* clearfix dla floatów */
+        }
+        .float-img-left {
+            float: left;
+            margin: 0 1.5rem 1rem 0;
+            width: 260px;
+            border-radius: 28px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+            border: 2px solid #C79137;
+            transition: transform 0.3s;
+        }
+        .float-img-right {
+            float: right;
+            margin: 0 0 1rem 1.5rem;
+            width: 260px;
+            border-radius: 28px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+            border: 2px solid #C79137;
+            transition: transform 0.3s;
+        }
+        .float-img-left:hover, .float-img-right:hover {
+            transform: scale(1.02);
+        }
+        .lorem-text {
+            text-align: justify;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #ece8da;
+        }
+        .lorem-text p {
+            margin-bottom: 1rem;
+        }
+        /* responsywność obrazków */
+        @media (max-width: 760px) {
+            .float-img-left, .float-img-right {
+                width: 100%;
+                float: none;
+                margin: 0 0 1.2rem 0;
+                display: block;
+            }
+            .lorem-text {
+                text-align: left;
+            }
+        }
+
+        /* stopka */
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            padding-top: 1.8rem;
+            border-top: 1px solid #C79137;
+            font-size: 0.85rem;
+            color: #b8b494;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer .badge {
+            background: #C79137;
+            color: #070705;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3rem;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .slogan {
+                font-size: 1.1rem;
+            }
+            .phone-number {
+                font-size: 1.5rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        @media (max-width: 680px) {
+            .salons-grid {
+                flex-direction: column;
+            }
+        }
+        .note {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #ddd9c6;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Nagłówek z hasłem -->
+    <div class="hero">
+        <h1>✂️ Salon Fryzjerski - "Marzena" ✂️</h1>
+        <div class="slogan">Salon z tradycjami. Działamy na rynku fryzjerskim od 1991 roku.</div>
+        <p>Doświadczenie • Pasja • Styl klasyczny i nowoczesny</p>
+    </div>
+
+    <!-- DWA BOXY / KARTY - LOKALE -->
+    <div class="salons-grid">
+        <!-- Lewa karta: Rokitnica -->
+        <div class="card">
+            <h2>📍 Rokitnica</h2>
+            <div class="phone-group">
+                <!-- bardzo wyróżniające się numery telefonów -->
+                <a href="tel:322721384" class="phone-number">📞 322 721 384</a>
+                <a href="tel:780460077" class="phone-number">📱 780 460 077</a>
+            </div>
+            <div class="address">
+                <p><span class="address-icon">✂️</span> ul. Wajzera 47, Zabrze Rokitnica</p>
+                <p><span class="address-icon">⏱️</span> Pon–Pt: 9:00–19:00 | Sob: 9:00–15:00</p>
+            </div>
+        </div>
+
+        <!-- Prawa karta: Helenka -->
+        <div class="card">
+            <h2>🌸 Helenka</h2>
+            <div class="phone-group">
+                <a href="tel:322728998" class="phone-number">📞 322 728 998</a>
+                <a href="tel:780499077" class="phone-number">📱 780 499 077</a>
+            </div>
+            <div class="address">
+                <p><span class="address-icon">✂️</span> ul. Wolności 12, Zabrze Helenka</p>
+                <p><span class="address-icon">⏱️</span> Pon–Pt: 10:00–20:00 | Sob: 9:00–14:00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sekcja z rzeczywistymi danymi firmy (opisy, NIP, lata działalności) -->
+    <div class="company-info">
+        <p><strong>✨ Salony w Zabrzu – zawsze blisko Ciebie ✨</strong><br>
+        📍 Usługi świadczymy w <strong>Zabrzu Rokitnicy</strong> przy ulicy Wajzera 47.<br>
+        ☎️ Tel. <strong>322721384</strong> oraz <strong>780460077</strong> &nbsp;|&nbsp;
+        📍 Salon w <strong>Zabrzu Helence</strong> nr tel. <strong>322728998</strong> oraz <strong>780499077</strong>.</p>
+        <p>💇 Oferujemy usługi fryzjerskie od <strong>1992 roku</strong> i cały czas zapewniamy jak najlepsze zadowolenie naszych Klientów.  
+        Łączymy tradycyjne techniki z nowoczesnymi trendami – dbamy o każdy detal.</p>
+        <p>🧾 <span class="nip">NIP: 6481060992</span> &nbsp;|&nbsp; <span class="nip">REGON: 276391130</span> &nbsp;|&nbsp; Salon z certyfikatem jakości</p>
+    </div>
+
+    <!-- TEKST GŁÓWNY (lorem ipsum) z opływającymi zdjęciami [flex + float, responsywny] -->
+    <div class="text-with-images">
+        <h3>📖 Nasza filozofia & kreatywność</h3>
+        <div class="image-float clearfix">
+            <!-- Zdjęcie lewe - opływa tekst -->
+            <img class="float-img-left" src="https://picsum.photos/id/228/400/280" alt="Stylizacja fryzjerska" loading="lazy">
+            <!-- Zdjęcie prawe - opływa tekst z drugiej strony -->
+            <img class="float-img-right" src="https://picsum.photos/id/20/400/280" alt="Salon fryzjerski wnętrze" loading="lazy">
+            <div class="lorem-text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. </p>
+                <p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. </p>
+                <p>Morbi fringilla convallis sapien, id pulvinar odio volutpat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                <p>✨ Nasze salony to przestrzeń, gdzie pasja spotyka się z profesjonalizmem – zapraszamy do kontaktu! ✨</p>
+            </div>
+        </div>
+        <div class="note" style="margin-top: 1rem;">* Zdjęcia poglądowe — oddają klimat naszej pracy i profesjonalnego podejścia.</div>
+    </div>
+
+    <!-- stopka + dodatkowe przypomnienie NIP i sloganu -->
+    <div class="footer">
+        <div>© 2025 Salon Fryzjerski z tradycjami od 1991r. | <strong>Zawsze wierni stylowi</strong></div>
+        <div class="badge">📞 Umów wizytę: 322 721 384 / 322 728 998</div>
+        <div>🧾 NIP: 6481060992</div>
+    </div>
+</div>
+
+<!-- brak JS nie jest wymagany, jednak prosta interakcja dla czytelności linków telefonów -->
+</body>
+</html>
